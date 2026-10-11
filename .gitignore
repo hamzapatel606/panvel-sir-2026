@@ -1,0 +1,40 @@
+# ---- Dependencies & builds ----
+node_modules/
+dist/
+dist-admin/
+*.tsbuildinfo
+.vite/
+coverage/
+
+# ---- Local Cloudflare / Firebase state (contains local test databases) ----
+.wrangler/
+.firebase/
+*.log
+
+# ---- Secrets: never commit ----
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# ---- Voter data: never commit ----
+*.xlsx
+*.xls
+*.csv
+*.pdf
+*.sqlite
+*.sqlite3
+*.db
+data/
+exports/
+*.zip
+
+# ---- Editors / OS ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json

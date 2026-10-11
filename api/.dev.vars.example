@@ -1,0 +1,5 @@
+# Copy to .dev.vars for local `wrangler dev`. Never commit .dev.vars.
+# Admin Worker only:
+CF_API_TOKEN=
+# "1" lets `wrangler dev -c wrangler.admin.jsonc` skip Cloudflare Access on localhost.
+ACCESS_DEV_BYPASS=1

@@ -1,0 +1,26 @@
+{
+	"name": "panvel-sir-api",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"deploy": "wrangler deploy",
+		"dev": "wrangler dev",
+		"start": "wrangler dev",
+		"test": "vitest run",
+		"cf-typegen": "wrangler types",
+		"check-xlsx": "tsx src/import/check-xlsx.ts",
+		"dev:admin": "wrangler dev -c wrangler.admin.jsonc",
+		"deploy:admin": "npm --prefix ../web run build:admin && wrangler deploy -c wrangler.admin.jsonc"
+	},
+	"devDependencies": {
+		"@types/node": "^22.20.2",
+		"tsx": "^4.23.13",
+		"typescript": "^5.5.2",
+		"vitest": "~4.1.0",
+		"wrangler": "^4"
+	},
+	"dependencies": {
+		"jose": "^6.2.12",
+		"xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
+	}
+}

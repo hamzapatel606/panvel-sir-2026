@@ -1,0 +1,59 @@
+{
+  // Private admin Worker: imports, PDFs, publishing. Lives at
+  // https://panvel-sir-admin.panvel-sir.workers.dev behind Cloudflare Access.
+  // Deploy: npm run deploy:admin  (builds the admin page first).
+  "name": "panvel-sir-admin",
+  "main": "src/admin-worker.ts",
+  "compatibility_date": "2026-09-10",
+  "account_id": "d2cdff46dfb1c53ee31a738cf6507a70",
+
+  "workers_dev": true,
+  "preview_urls": false,
+
+  "observability": {
+    "enabled": true
+  },
+
+  // The admin page, built by `npm run build:admin` in the website folder.
+  // run_worker_first: every request goes through the Access check in code.
+  "assets": {
+    "directory": "../web/dist-admin",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": true
+  },
+
+  "vars": {
+    "CF_ACCOUNT_ID": "d2cdff46dfb1c53ee31a738cf6507a70",
+    // From the "Enable Cloudflare Access" dialog (Settings → Domains & Routes → workers.dev).
+    // Not secrets: they only say WHICH Access app to trust.
+    "TEAM_DOMAIN": "https://tiny-bird-dc87.cloudflareaccess.com",
+    "POLICY_AUD": "a6f9d66130a6690f90fafaee768044d41ac4f64c031aac48fa4a961f9ba60dd0"
+  },
+
+  // Same databases and PDF storage as the public API.
+  "d1_databases": [
+    {
+      "binding": "ASDD_DB",
+      "database_name": "panvel-sir-asdd",
+      "database_id": "82b03d14-9166-4324-a92e-cb7b7aa55884"
+    },
+    {
+      "binding": "DRAFT_DB",
+      "database_name": "panvel-sir-draft",
+      "database_id": "cd4ee910-17f4-4ad8-8d09-1a0428eb6758"
+    },
+    {
+      "binding": "FINAL_DB",
+      "database_name": "panvel-sir-final",
+      "database_id": "f873b934-9999-4811-8207-e71d2d536ee4"
+    }
+  ],
+
+  "r2_buckets": [
+    {
+      "binding": "PDF_BUCKET",
+      "bucket_name": "panvel-sir-pdfs"
+    }
+  ]
+}
