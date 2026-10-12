@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import type { Part } from "../services/api";
+import { countLabel } from "../utils/records";
 
 export default function PartSelector({
 	id,
@@ -100,7 +101,7 @@ export default function PartSelector({
 								onClick={() => choose("")}
 							>
 								<span>{value === "" ? "✓ " : ""}All Parts</span>
-								<span className="part-selector-count">{totalRecords.toLocaleString()} records</span>
+								<span className="part-selector-count">{countLabel(totalRecords)}</span>
 							</button>
 
 							{filteredParts.map((part) => (
@@ -116,7 +117,7 @@ export default function PartSelector({
 										{part.part_name ? ` — ${part.part_name}` : ""}
 									</span>
 									<span className="part-selector-count">
-										{(part.record_count ?? 0).toLocaleString()} records
+										{countLabel(part.record_count ?? 0)}
 									</span>
 								</button>
 							))}

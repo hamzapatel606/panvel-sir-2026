@@ -11,7 +11,7 @@ import StatsCards from "../components/StatsCards";
 import { isSearchField, isTooShortTextSearch, MIN_TEXT_QUERY, needsPart, SECTIONS, type SearchField } from "../config/sections";
 import { usePublishedSections } from "../hooks/usePublishedSections";
 import { getPartsCached, isPublished, searchRecords, type Part, type Section } from "../services/api";
-import { getRecordId, type RecordItem } from "../utils/records";
+import { countLabel, getRecordId, type RecordItem } from "../utils/records";
 
 const PAGE_SIZE = 30;
 
@@ -270,7 +270,7 @@ export default function SectionPage({ section }: { section: Section }) {
 					<div className="results-toolbar">
 						<div>
 							<strong>{config.title}</strong>
-							<span>{records.length === 0 ? "No records displayed" : `Showing ${records.length} records`}</span>
+							<span>{records.length === 0 ? "No records displayed" : `Showing ${countLabel(records.length)}`}</span>
 						</div>
 					</div>
 

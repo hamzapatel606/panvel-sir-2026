@@ -110,3 +110,7 @@ export function getDetailFields(section: Section, record: RecordItem, parts: Par
 	);
 	return rows;
 }
+/** "1 record", "2 records", "1,234 records" */
+export function countLabel(count: number, word = "record"): string {
+	return `${count.toLocaleString("en-IN")} ${count === 1 ? word : `${word}s`}`;
+}
