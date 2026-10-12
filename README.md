@@ -47,9 +47,9 @@ Admin ──► Cloudflare Access (login) ──► panvel-sir-admin (Worker: ad
 
 | Constraint | Decision |
 |---|---|
-| D1 free: 5M rows read/day | Every lookup uses a forced index (`INDEXED BY`); no "list everything" page; no `COUNT(*)` pagination — cursor-based "Load more" instead. A v4 duplicate-EPIC check that read **3.06M rows per import** was rewritten to negligible reads. |
+| D1 free: 5M rows read/day | Every lookup uses a forced index (`INDEXED BY`); no "list everything" page; no `COUNT(*)` pagination — cursor-based "Load more" instead. |
 | D1 free: 100k rows written/day | Dropped 4 unused indexes → **5 writes per record**; imports are resumable per Part, so a failed upload never re-writes finished Parts. |
-| Scraping risk (personal data) | Origin lock, per-IP rate limit, 3-letter minimum for name search, max 30 results per request, no bulk endpoints, no public data files. |
+| Searching personal data | Origin lock, per-IP rate limit, 3-letter minimum for name search, max 30 results per request. |
 | Admin security | Separate Worker; Cloudflare Access **and** in-code JWT verification (`jose`), so admin stays locked even if Access is misconfigured. |
 | Speed on budget phones | Self-hosted font, API preconnect, Analytics loaded after paint, admin code excluded from the public bundle, 5-minute browser cache + 60-second in-Worker cache for list metadata. |
 
